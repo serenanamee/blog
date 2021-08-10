@@ -20,6 +20,22 @@ class PostsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update(params[:post].permit(:title, :body))
+      redirect_to @post
+    else
+      render 'edit'  
+    end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path
+  end
+
   private
 
   def post_params
